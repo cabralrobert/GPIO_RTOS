@@ -2,8 +2,8 @@ all: folder configPkg app
 
 FOLDER_USER = /home/$(USER)
 
-CC= arm-none-eabi-gcc
-OBJCOPY= arm-none-eabi-objcopy
+CC= $(FOLDER_USER)/ti/gcc-arm-none-eabi-6-2017-q1-update/bin/arm-none-eabi-gcc
+OBJCOPY= $(FOLDER_USER)/ti/gcc-arm-none-eabi-6-2017-q1-update/bin/arm-none-eabi-objcopy
 APP_NAME=gpio_rtos
 
 XS = $(FOLDER_USER)/ti/xdctools_3_50_03_33_core/xs
@@ -19,7 +19,7 @@ TIIMAGE= $(PDK_FOLDER)/ti/starterware/tools/ti_image/tiimage
 
 CFLAGS= -mtune=cortex-a8 -marm -Dam3359 -DSOC_AM335x -DbbbAM335x -g -gdwarf-3 -gstrict-dwarf -Wall -finstrument-functions -mfloat-abi=hard -Wl,-Map,"bin/$(APP_NAME).map" -nostartfiles -static -Wl,--gc-sections -L"$(BIOS_FOLDER)/gnu/targets/arm/libs/install-native/arm-none-eabi/lib/hard" -Wl,--defsym,STACKSIZE=0x1C000 -Wl,--defsym,HEAPSIZE=0x400 --specs=nano.specs
 
-FLAGS_OBJ= -c -mcpu=cortex-a8 -mtune=cortex-a8 -march=armv7-a -marm -mfloat-abi=hard -Dam3359 -DSOC_AM335x -DbbbAM335x -I"inc/" -g -gdwarf-3 -gstrict-dwarf -Wall -finstrument-functions -MMD -MP
+FLAGS_OBJ= -c -mcpu=cortex-a8 -mtune=cortex-a8 -march=armv7-a -marm -mfloat-abi=hard -Dam3359 -DSOC_AM335x -DbbbAM335x -I"$(FOLDER_USER)/ti/gcc-arm-none-eabi-6-2017-q1-update/arm-none-eabi/include" -I"inc/" -g -gdwarf-3 -gstrict-dwarf -Wall -finstrument-functions -MMD -MP
 
 LINKER_FLAGS= -Wl,-T"configPkg/linker.cmd" -Wl,--start-group -lrdimon -lgcc -lm -lnosys -lc -Wl,--end-group 
 

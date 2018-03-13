@@ -1,6 +1,6 @@
 #
 # This file was generated based on the configuration script:
-#     /home/robertcabral/UFC/Semestre_7/RTOS/rtos_gpio/conf/am335x_app_bbbam335x.cfg
+#     /home/robertcabral/UFC/Semestre_7/RTOS/GPIO_RTOS/conf/am335x_app_bbbam335x.cfg
 #
 # This makefile may be included in other makefiles that need to build
 # the libraries containing the compiled source files generated as
@@ -14,7 +14,7 @@
 #
 # The absolute path to the generated source directory (at the time the
 # sources were generated) is:
-#    /home/robertcabral/UFC/Semestre_7/RTOS/rtos_gpio/conf/src
+#    /home/robertcabral/UFC/Semestre_7/RTOS/GPIO_RTOS/conf/src
 #
 GEN_SRC_DIR ?= conf/src
 
