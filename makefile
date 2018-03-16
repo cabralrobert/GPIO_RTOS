@@ -32,6 +32,7 @@ LABELS= GPIO_soc \
 				I2C_soc \
 				GPIO_bbbAM335x_board \
 				UART_soc \
+				ADC \
 				main_led_blink
 
 configPkg:
@@ -45,6 +46,8 @@ app: $(LABELS)
 	@$(OBJCOPY) -O binary bin/$(APP_NAME).out bin/$(APP_NAME)_ti.bin
 	@echo "Generating: bin/app"
 	@$(TIIMAGE) $(IMG_LOAD_ADDR) NONE bin/$(APP_NAME)_ti.bin bin/app
+	@rm -rf ~/pastaRTOS/app
+	@cp bin/app ~/pastaRTOS/
 
 GPIO_soc: src/GPIO_soc.c
 	@echo "Compiling: $@"
@@ -65,6 +68,11 @@ GPIO_bbbAM335x_board: src/GPIO_bbbAM335x_board.c
 UART_soc: src/UART_soc.c
 	@echo "Compiling: $@"
 	@$(CC) $(FLAGS_OBJ) -MF"obj/$@.d" -MT"obj/$@.o" -o"obj/$@.o" @"configPkg/compiler.opt" $<
+
+ADC: src/ADC.c
+	@echo "Compiling: $@"
+	@$(CC) $(FLAGS_OBJ) -MF"obj/$@.d" -MT"obj/$@.o" -o"obj/$@.o" @"configPkg/compiler.opt" $<
+
 
 main_led_blink: src/main_led_blink.c
 	@echo "Compiling: $@"
